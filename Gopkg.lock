@@ -285,14 +285,17 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:b39359a147b8773a432adca9ed35e7becaa4a80d4d92a54c03a9de446ce8fc1c"
+  digest = "1:f4abab2177c6d2a0b21b4e46bf88b8be3098fcaa8d86c2370a9675c54bd5f26b"
   name = "github.com/hashicorp/hcl2"
   packages = [
+    "ext/dynblock",
+    "ext/typeexpr",
     "gohcl",
     "hcl",
     "hcl/hclsyntax",
     "hcl/json",
     "hcldec",
+    "hcled",
     "hclparse",
     "hclwrite",
   ]
@@ -321,28 +324,47 @@
   version = "v1.0.0"
 
 [[projects]]
-  digest = "1:7a57c16efd57b6c42ec45b05f761701e5cd6d731a7efd894b6876a19d3bce4ec"
+  digest = "1:f1d1964d5b16b5e0a58cb2f251e2e89aa2439fd42c66aae8d99cb7aea63d9034"
   name = "github.com/hashicorp/terraform"
   packages = [
+    "addrs",
+    "command/format",
     "config",
-    "config/configschema",
     "config/hcl2shim",
     "config/module",
+    "configs",
+    "configs/configload",
+    "configs/configschema",
     "dag",
     "flatmap",
     "helper/config",
+    "helper/didyoumean",
     "helper/hashcode",
     "helper/hilmapstructure",
     "helper/logging",
+    "helper/plugin",
     "helper/resource",
     "helper/schema",
     "httpclient",
+    "internal/earlyconfig",
+    "internal/initwd",
+    "internal/modsdir",
+    "internal/tfplugin5",
+    "lang",
+    "lang/funcs",
     "moduledeps",
+    "plans",
+    "plans/objchange",
     "plugin",
+    "plugin/convert",
     "plugin/discovery",
+    "providers",
+    "provisioners",
     "registry",
     "registry/regsrc",
     "registry/response",
+    "states",
+    "states/statefile",
     "svchost",
     "svchost/auth",
     "svchost/disco",
@@ -351,8 +373,16 @@
     "version",
   ]
   pruneopts = "NUT"
-  revision = "17850e9a55d33c43d7c31fd6ac122ba97a51d899"
-  version = "v0.11.10"
+  revision = "e4dfd09be21ee2f69e7f9bd96b6aab2aed6885d4"
+  version = "v0.12.0-beta1"
+
+[[projects]]
+  branch = "master"
+  digest = "1:b1d32d84ffd5809088168512a3e256f1485d39a77e9dd2d7dd4aa9c5af224298"
+  name = "github.com/hashicorp/terraform-config-inspect"
+  packages = ["tfconfig"]
+  pruneopts = "NUT"
+  revision = "b0707673339c3783277b0c74d4d849ab58750421"
 
 [[projects]]
   branch = "master"
@@ -392,6 +422,14 @@
   pruneopts = "NUT"
   revision = "3d22a244be8aa6fb16ac24af0e195c08b7d973aa"
   version = "v1.0.0"
+
+[[projects]]
+  branch = "master"
+  digest = "1:58ed95018a7eb9f94125846e7cf1f12843c0d46308e9a7a6a58e895270da5b99"
+  name = "github.com/mitchellh/colorstring"
+  packages = ["."]
+  pruneopts = "NUT"
+  revision = "d06e56a500db4d08c33db0b79461e7c9beafca2d"
 
 [[projects]]
   digest = "1:1e5a8bf6fb005f1808852ad1a4bedb7b4b3291af90dec12c4c9e4a955a42c9b2"
@@ -490,6 +528,17 @@
   revision = "3113b8401b8a98917cde58f8bbd42a1b1c03b1fd"
 
 [[projects]]
+  digest = "1:90cf76d709ce9b057e7d75bd245bf7c1242d21ba4f908fb22c7a2a96d1dcc0ca"
+  name = "github.com/spf13/afero"
+  packages = [
+    ".",
+    "mem",
+  ]
+  pruneopts = "NUT"
+  revision = "f4711e4db9e9a1d3887343acb72b2bbfc2f686f5"
+  version = "v1.2.1"
+
+[[projects]]
   digest = "1:5f252b001e9573efb54ffae53b96bb5bfa4963afec4f35d607121ebb4a4dff81"
   name = "github.com/ulikunitz/xz"
   packages = [
@@ -503,8 +552,19 @@
   version = "v0.5.5"
 
 [[projects]]
+  digest = "1:2ca77ced353fcee54864e6d09cb5abc1ecda9b0183962ef6edcb9ef150e72d5a"
+  name = "github.com/vmihailenco/msgpack"
+  packages = [
+    ".",
+    "codes",
+  ]
+  pruneopts = "NUT"
+  revision = "abe680308d0beea7c2c861876fdc269996e7662e"
+  version = "v4.0.3"
+
+[[projects]]
   branch = "master"
-  digest = "1:12e7f025709e015c770843e3a62ec3f153774520c06dac7f66d2b473ddb35c08"
+  digest = "1:f2a3d9de674ae99e5c00bbebf0b3e6f4a15cd6d262ca61ca5ae68893fa7bc4e7"
   name = "github.com/zclconf/go-cty"
   packages = [
     "cty",
@@ -513,6 +573,7 @@
     "cty/function/stdlib",
     "cty/gocty",
     "cty/json",
+    "cty/msgpack",
     "cty/set",
   ]
   pruneopts = "NUT"
@@ -538,12 +599,10 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:7bd4c9c1f1410e2a2a31ef28044c96a4d95d89aa46e4cc7091af25d0b1efbc44"
+  digest = "1:dc5dcbb306af980306fab456d4788e88c880177227bd488a92d5bef7d8743497"
   name = "golang.org/x/net"
   packages = [
     "context",
-    "html",
-    "html/atom",
     "http/httpguts",
     "http2",
     "http2/hpack",
@@ -586,6 +645,24 @@
   version = "v0.3.0"
 
 [[projects]]
+  digest = "1:7ba131bc32b39bf8af87230ac72e12631683bd1a32667b019ae66ac68a4a2eb2"
+  name = "google.golang.org/appengine"
+  packages = [
+    ".",
+    "datastore",
+    "internal",
+    "internal/app_identity",
+    "internal/base",
+    "internal/datastore",
+    "internal/log",
+    "internal/modules",
+    "internal/remote_api",
+  ]
+  pruneopts = "NUT"
+  revision = "54a98f90d1c46b7731eb8fb305d2a321c30ef610"
+  version = "v1.5.0"
+
+[[projects]]
   branch = "master"
   digest = "1:56b0bca90b7e5d1facf5fbdacba23e4e0ce069d25381b8e2f70ef1e7ebfb9c1a"
   name = "google.golang.org/genproto"
@@ -594,7 +671,7 @@
   revision = "31ac5d88444a9e7ad18077db9a165d793ad06a2e"
 
 [[projects]]
-  digest = "1:f112c6f3e9bbd16eb113db8f37adb6bd10270142079d00c7ac625534cbb16475"
+  digest = "1:d4bd7e9fe42c7e1411db3dce8f1a51d7b1d1fae7cd981b2260904dc448c53aad"
   name = "google.golang.org/grpc"
   packages = [
     ".",
@@ -625,6 +702,7 @@
     "stats",
     "status",
     "tap",
+    "test/bufconn",
   ]
   pruneopts = "NUT"
   revision = "2e463a05d100327ca47ac218281906921038fd95"

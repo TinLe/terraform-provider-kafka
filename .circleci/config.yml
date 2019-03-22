@@ -22,14 +22,18 @@ jobs:
       - restore_cache:
           keys:
             - go-mod-v1-{{ checksum "go.sum" }}
-      - run: go build
+      - run: go get -u github.com/mitchellh/gox
+      - run: gox -osarch="linux/amd64 darwin/amd64"
       - save_cache:
           key: go-mod-v1-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
       - store_artifacts:
-          path: /go/src/github.com/Mongey/terraform-provider-kafka/terraform-provider-kafka
+          path: /go/src/github.com/Mongey/terraform-provider-kafka/terraform-provider-kafka_linux_amd64
           destination: terraform-provider-kafka
+      - store_artifacts:
+          path: /go/src/github.com/Mongey/terraform-provider-kafka/terraform-provider-kafka_darwin_amd64
+          destination: terraform-provider-kafka_darwin_amd64
       - run: make test
       - run: go get github.com/jstemmer/go-junit-report
       - run: mkdir -p $TEST_RESULTS
